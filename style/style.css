@@ -1,0 +1,183 @@
+@keyframes rebond {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0% {
+        transform: rotate(-45deg);
+    }
+
+    50% {
+        transform: rotate(45deg);
+    }
+
+    100% {
+        transform: rotate(-45deg);
+    }
+}
+
+body {
+    background-color: black;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+button {
+    background-color: brown;
+    color: white;
+    border: 2px solid brown;
+    padding: 20px 50px;
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    transition: all .4s ease-in-out;
+    cursor: pointer;
+    margin-top: 50px;
+    width: 90vw;
+}
+
+.btn-wrapper {
+    position: relative;
+}
+
+.btn-wrapper::before {
+    content: '';
+    background-image: url('./images/Red-Arrow-PNG-Clip-Art-HD-Quality.png');
+    position: absolute;
+    top: 50px;
+    left: -150px;
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transform: rotate(180deg);
+}
+
+.btn-wrapper::after {
+    content: '';
+    background-image: url('./images/Red-Arrow-PNG-Clip-Art-HD-Quality.png');
+    position: absolute;
+    top: 20px;
+    right: -150px;
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transform: rotate(0deg);
+}
+
+button:hover {
+    color: brown;
+    background-color: black;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    inset: 0 0 0 0;
+}
+
+.container>img {
+    margin-top: 30vh;
+}
+
+h1,
+h2 {
+    color: brown;
+    z-index: 999;
+    opacity: 0;
+    position: absolute;
+    top: -100vh;
+    transition: top 6s ease-in-out, opacity 8s ease-in-out;
+    font-family: 'Rubik', sans-serif;
+    font-size: 56px;
+    animation: rebond .4s infinite;
+    animation-delay: 7s;
+    text-align: center;
+}
+
+.surprise,
+.bad-surprise {
+    opacity: 0;
+    position: absolute;
+    inset: 100vh 0 0 0;
+    transition: all 1s ease-in-out;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.surprise img,
+.bad-surprise img {
+    transform: rotate(0deg) scale(0);
+    transition: all 4s ease-in-out;
+    opacity: 0;
+    transform-origin: center;
+}
+
+.appears {
+    opacity: 1;
+    inset: 0 0 0 0;
+}
+
+.surprise .scale-up,
+.bad-surprise .scale-up {
+    transform: rotate(3600deg) scale(1);
+    opacity: 1;
+}
+
+.bad-surprise .scale-medium {
+    transform: rotate(3600deg) scale(1);
+    opacity: 1;
+}
+
+.opacity {
+    opacity: 1;
+    top: 10vh;
+}
+
+.no-arrow::before,
+.no-arrow::after {
+    display: none;
+}
+
+.poop {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 50vh;
+    left: 10vw;
+    animation: bounce 2s infinite;
+}
+
+@media screen and (min-width: 992px) {
+    button {
+        width: fit-content;
+        width: -moz-fit-content;
+    }
+    .poop {
+        width: 200px;
+        height: 200px;
+    }
+    .surprise .scale-up,
+    .bad-surprise .scale-up {
+    transform: rotate(3600deg) scale(4);
+    }
+}
